@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Sarah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Product Sans', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fff;
+      color: #202124;
+    }
+
+    .logo {
+      font-size: 96px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      letter-spacing: -2px;
+      user-select: none;
+    }
+
+    .logo .h { color: #4285F4; }
+    .logo .e { color: #EA4335; }
+    .logo .l1 { color: #FBBC05; }
+    .logo .l2 { color: #4285F4; }
+    .logo .o { color: #34A853; }
+    .logo .comma { color: #EA4335; }
+    .logo .s { color: #4285F4; }
+    .logo .a1 { color: #EA4335; }
+    .logo .r { color: #FBBC05; }
+    .logo .a2 { color: #34A853; }
+    .logo .hh { color: #4285F4; }
+    .logo .dot { color: #EA4335; }
+
+    .subtitle {
+      font-size: 20px;
+      color: #5f6368;
+      margin-bottom: 36px;
+      letter-spacing: 0.5px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      width: 584px;
+      max-width: 90vw;
+      height: 48px;
+      border: 1px solid #dfe1e5;
+      border-radius: 24px;
+      padding: 0 18px;
+      margin-bottom: 30px;
+      transition: box-shadow 0.2s;
+    }
+
+    .search-box:hover,
+    .search-box:focus-within {
+      box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+      border-color: rgba(223,225,229,0);
+    }
+
+    .search-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 14px;
+      color: #9aa0a6;
+      flex-shrink: 0;
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      color: #202124;
+      background: transparent;
+      font-family: inherit;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      background: #f8f9fa;
+      border: 1px solid #f8f9fa;
+      border-radius: 4px;
+      color: #3c4043;
+      font-size: 14px;
+      padding: 10px 24px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+
+    .btn:hover {
+      box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+      border-color: #dadce0;
+    }
+
+    .initiative {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #f0f4ff 0%, #fef3f2 50%, #fefce8 100%);
+      border: 1px solid #e8eaed;
+      border-radius: 12px;
+      padding: 16px 28px;
+      margin-bottom: 60px;
+      font-size: 15px;
+      color: #3c4043;
+    }
+
+    .initiative .badge {
+      background: linear-gradient(135deg, #4285F4, #34A853);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #f2f2f2;
+      border-top: 1px solid #dadce0;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 30px;
+      font-size: 14px;
+      color: #70757a;
+    }
+
+    .footer a {
+      color: #70757a;
+      text-decoration: none;
+      margin: 0 12px;
+    }
+
+    .footer a:hover { text-decoration: underline; }
+
+    .wave {
+      display: inline-block;
+      animation: wave 1.8s ease-in-out infinite;
+      transform-origin: 70% 70%;
+    }
+
+    @keyframes wave {
+      0%, 60%, 100% { transform: rotate(0deg); }
+      10% { transform: rotate(14deg); }
+      20% { transform: rotate(-8deg); }
+      30% { transform: rotate(14deg); }
+      40% { transform: rotate(-4deg); }
+      50% { transform: rotate(10deg); }
+    }
+
+    @media (max-width: 600px) {
+      .logo { font-size: 56px; }
+      .subtitle { font-size: 16px; }
+      .initiative { flex-direction: column; text-align: center; margin: 0 16px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <span class="h">H</span><span class="e">e</span><span class="l1">l</span><span class="l2">l</span><span class="o">o</span><span class="comma">,</span>
+    <span class="s">S</span><span class="a1">a</span><span class="r">r</span><span class="a2">a</span><span class="hh">h</span><span class="dot">.</span>
+    <span class="wave">👋</span>
+  </div>
+
+  <div class="subtitle">Well-done mine. Here we go.</div>
+
+  <div class="search-box">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    </svg>
+    <input type="text" placeholder="Search the AI-native future..." autofocus>
+  </div>
+
+  <div class="buttons">
+    <button class="btn" onclick="alert('🚀 The future is AI-native!')">AI Search</button>
+    <button class="btn" onclick="alert('✨ You\'re already lucky, Sarah!')">I'm Feeling Lucky</button>
+  </div>
+
+  <div class="initiative">
+    <span class="badge">AI-NATIVE</span>
+    <span>🚀 is here — we go for the <strong>AI-native initiative</strong></span>
+  </div>
+
+  <div class="footer">
+    <div class="footer-row">
+      <div><a href="#">South Korea</a></div>
+      <div>
+        <a href="#">About</a>
+        <a href="#">AI-Native</a>
+        <a href="#">2026</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
