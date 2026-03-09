@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello Sarah</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -44,8 +43,31 @@
     .subtitle {
       font-size: 20px;
       color: #5f6368;
-      margin-bottom: 36px;
+      margin-bottom: 12px;
       letter-spacing: 0.5px;
+    }
+
+    .location-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #5f6368;
+      margin-bottom: 28px;
+      padding: 8px 16px;
+      background: #f8f9fa;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .location-bar:hover { background: #e8eaed; }
+    .location-bar.active { color: #1a73e8; background: #e8f0fe; }
+    .location-bar .dot-pulse {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #34A853;
+      animation: pulse 1.5s ease-in-out infinite;
     }
 
     .search-box {
@@ -56,8 +78,8 @@
       height: 48px;
       border: 1px solid #dfe1e5;
       border-radius: 24px;
-      padding: 0 18px;
-      margin-bottom: 30px;
+      padding: 0 8px 0 18px;
+      margin-bottom: 24px;
       transition: box-shadow 0.2s;
     }
 
@@ -68,8 +90,7 @@
     }
 
     .search-icon {
-      width: 20px;
-      height: 20px;
+      width: 20px; height: 20px;
       margin-right: 14px;
       color: #9aa0a6;
       flex-shrink: 0;
@@ -85,10 +106,26 @@
       font-family: inherit;
     }
 
+    .loc-btn {
+      width: 38px; height: 38px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .loc-btn:hover { background: #f1f3f4; }
+    .loc-btn svg { width: 22px; height: 22px; color: #4285F4; }
+
     .buttons {
       display: flex;
       gap: 12px;
-      margin-bottom: 40px;
+      margin-bottom: 24px;
     }
 
     .btn {
@@ -108,6 +145,17 @@
       border-color: #dadce0;
     }
 
+    .btn-blue {
+      background: #4285F4;
+      border-color: #4285F4;
+      color: #fff;
+    }
+    .btn-blue:hover {
+      background: #3367d6;
+      box-shadow: 0 1px 3px rgba(66,133,244,0.4);
+      color: #fff;
+    }
+
     .initiative {
       display: flex;
       align-items: center;
@@ -116,7 +164,6 @@
       border: 1px solid #e8eaed;
       border-radius: 12px;
       padding: 16px 28px;
-      margin-bottom: 60px;
       font-size: 15px;
       color: #3c4043;
     }
@@ -128,7 +175,77 @@
       font-weight: 500;
       padding: 4px 10px;
       border-radius: 20px;
-      letter-spacing: 0.5px;
+    }
+
+    /* Results */
+    .results {
+      width: 584px;
+      max-width: 90vw;
+      margin-bottom: 24px;
+      display: none;
+    }
+
+    .results.show { display: block; }
+
+    .result-card {
+      padding: 16px 0;
+      border-bottom: 1px solid #ebebeb;
+    }
+
+    .result-card:last-child { border-bottom: none; }
+
+    .result-card .name {
+      font-size: 18px;
+      color: #1a0dab;
+      margin-bottom: 4px;
+      cursor: pointer;
+    }
+    .result-card .name:hover { text-decoration: underline; }
+
+    .result-card .meta {
+      font-size: 13px;
+      color: #70757a;
+      margin-bottom: 6px;
+    }
+
+    .result-card .desc {
+      font-size: 14px;
+      color: #4d5156;
+      line-height: 1.5;
+    }
+
+    .result-card .tags {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .result-card .tag {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: #e8f0fe;
+      color: #1967d2;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #5f6368;
+      display: none;
+    }
+
+    .loading.show { display: block; }
+
+    .spinner {
+      display: inline-block;
+      width: 24px; height: 24px;
+      border: 3px solid #e8eaed;
+      border-top-color: #4285F4;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 8px;
     }
 
     .footer {
@@ -152,7 +269,6 @@
       text-decoration: none;
       margin: 0 12px;
     }
-
     .footer a:hover { text-decoration: underline; }
 
     .wave {
@@ -170,10 +286,19 @@
       50% { transform: rotate(10deg); }
     }
 
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     @media (max-width: 600px) {
       .logo { font-size: 56px; }
       .subtitle { font-size: 16px; }
-      .initiative { flex-direction: column; text-align: center; margin: 0 16px 80px; }
+      .initiative { flex-direction: column; text-align: center; margin: 0 16px; }
     }
   </style>
 </head>
@@ -187,17 +312,37 @@
 
   <div class="subtitle">Well-done mine. Here we go.</div>
 
+  <div class="location-bar" id="locationBar" onclick="getLocation()">
+    <span>📍</span>
+    <span id="locationText">Click to detect your location</span>
+  </div>
+
   <div class="search-box">
     <svg class="search-icon" viewBox="0 0 24 24" fill="currentColor">
       <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
     </svg>
-    <input type="text" placeholder="Search the AI-native future..." autofocus>
+    <input type="text" id="searchInput" placeholder="Search nearby..." autofocus>
+    <button class="loc-btn" onclick="getLocation()" title="Use my location">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+      </svg>
+    </button>
   </div>
 
   <div class="buttons">
-    <button class="btn" onclick="alert('🚀 The future is AI-native!')">AI Search</button>
-    <button class="btn" onclick="alert('✨ You\'re already lucky, Sarah!')">I'm Feeling Lucky</button>
+    <button class="btn btn-blue" onclick="searchNearby()">🔍 Search Nearby</button>
+    <button class="btn" onclick="searchNearby('food')">🍜 Food</button>
+    <button class="btn" onclick="searchNearby('cafe')">☕ Cafés</button>
+    <button class="btn" onclick="searchNearby('fun')">🎮 Fun</button>
   </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div>Searching near you...</div>
+  </div>
+
+  <div class="results" id="results"></div>
 
   <div class="initiative">
     <span class="badge">AI-NATIVE</span>
@@ -206,7 +351,7 @@
 
   <div class="footer">
     <div class="footer-row">
-      <div><a href="#">South Korea</a></div>
+      <div id="footerLocation"><a href="#">Detecting location...</a></div>
       <div>
         <a href="#">About</a>
         <a href="#">AI-Native</a>
@@ -214,6 +359,187 @@
       </div>
     </div>
   </div>
+
+  <script>
+    let userLat = null;
+    let userLon = null;
+    let userCity = '';
+
+    // Auto-detect location on load
+    window.addEventListener('load', () => getLocation());
+
+    function getLocation() {
+      const bar = document.getElementById('locationBar');
+      const text = document.getElementById('locationText');
+      text.textContent = 'Detecting...';
+
+      if (!navigator.geolocation) {
+        text.textContent = '❌ Geolocation not supported';
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        async (pos) => {
+          userLat = pos.coords.latitude;
+          userLon = pos.coords.longitude;
+
+          // Reverse geocode
+          try {
+            const res = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?lat=${userLat}&lon=${userLon}&format=json&accept-language=ko`
+            );
+            const data = await res.json();
+            const addr = data.address;
+            userCity = addr.city || addr.town || addr.county || addr.state || '';
+            const district = addr.suburb || addr.neighbourhood || addr.quarter || '';
+            const country = addr.country || '';
+
+            text.textContent = `${district ? district + ', ' : ''}${userCity}${country ? ', ' + country : ''}`;
+            document.getElementById('footerLocation').innerHTML = `<a href="#">📍 ${userCity || country}</a>`;
+            bar.classList.add('active');
+
+            // Add pulse dot
+            if (!bar.querySelector('.dot-pulse')) {
+              const dot = document.createElement('span');
+              dot.className = 'dot-pulse';
+              bar.prepend(dot);
+            }
+          } catch {
+            text.textContent = `📍 ${userLat.toFixed(4)}, ${userLon.toFixed(4)}`;
+            bar.classList.add('active');
+          }
+        },
+        (err) => {
+          text.textContent = '📍 Location access denied — click to retry';
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
+      );
+    }
+
+    async function searchNearby(category) {
+      const query = category || document.getElementById('searchInput').value.trim();
+      if (!query && !userLat) {
+        alert('Please enable location or enter a search term!');
+        return;
+      }
+
+      const loading = document.getElementById('loading');
+      const results = document.getElementById('results');
+      loading.classList.add('show');
+      results.classList.remove('show');
+      results.innerHTML = '';
+
+      // Search with Nominatim / Overpass
+      const searchQuery = query || 'restaurant';
+      const categoryMap = {
+        food: 'restaurant',
+        cafe: 'cafe',
+        fun: 'entertainment'
+      };
+      const osmQuery = categoryMap[searchQuery] || searchQuery;
+
+      try {
+        let url;
+        if (userLat && userLon) {
+          // Overpass API for nearby POIs
+          const radius = 1500;
+          const overpassQuery = `
+            [out:json][timeout:10];
+            (
+              node["amenity"~"${osmQuery}|${searchQuery}"](around:${radius},${userLat},${userLon});
+              node["shop"~"${searchQuery}"](around:${radius},${userLat},${userLon});
+              node["leisure"~"${searchQuery}"](around:${radius},${userLat},${userLon});
+              node["cuisine"~"${searchQuery}"](around:${radius},${userLat},${userLon});
+              node["name"~"${searchQuery}",i](around:${radius},${userLat},${userLon});
+            );
+            out body 10;
+          `;
+          url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(overpassQuery)}`;
+
+          const res = await fetch(url);
+          const data = await res.json();
+
+          if (data.elements && data.elements.length > 0) {
+            data.elements.forEach(el => {
+              const tags = el.tags || {};
+              const name = tags.name || tags['name:ko'] || tags['name:en'] || 'Unknown Place';
+              const type = tags.amenity || tags.shop || tags.leisure || tags.tourism || '';
+              const cuisine = tags.cuisine || '';
+              const phone = tags.phone || '';
+              const website = tags.website || '';
+              const dist = getDistance(userLat, userLon, el.lat, el.lon);
+
+              const card = document.createElement('div');
+              card.className = 'result-card';
+              card.innerHTML = `
+                <div class="name" onclick="${website ? `window.open('${website}')` : ''}">${name}</div>
+                <div class="meta">📍 ${dist}m away ${phone ? '· 📞 ' + phone : ''}</div>
+                <div class="desc">${type ? capitalize(type) : 'Place'}${cuisine ? ' · ' + capitalize(cuisine) : ''}</div>
+                <div class="tags">
+                  ${type ? `<span class="tag">${capitalize(type)}</span>` : ''}
+                  ${cuisine ? `<span class="tag">${cuisine}</span>` : ''}
+                  <span class="tag">${dist}m</span>
+                  <span class="tag" style="cursor:pointer" onclick="window.open('https://www.google.com/maps?q=${el.lat},${el.lon}')">🗺️ Map</span>
+                </div>
+              `;
+              results.appendChild(card);
+            });
+          } else {
+            results.innerHTML = `
+              <div class="result-card">
+                <div class="desc">No results found for "<strong>${searchQuery}</strong>" within 1.5km. Try a different search!</div>
+              </div>
+            `;
+          }
+        } else {
+          // Fallback: Nominatim search without coordinates
+          url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(searchQuery)}&format=json&limit=8`;
+          const res = await fetch(url);
+          const data = await res.json();
+
+          data.forEach(place => {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            card.innerHTML = `
+              <div class="name" onclick="window.open('https://www.google.com/maps?q=${place.lat},${place.lon}')">${place.display_name.split(',')[0]}</div>
+              <div class="meta">${place.display_name}</div>
+              <div class="tags">
+                <span class="tag">${place.type}</span>
+                <span class="tag" style="cursor:pointer" onclick="window.open('https://www.google.com/maps?q=${place.lat},${place.lon}')">🗺️ Map</span>
+              </div>
+            `;
+            results.appendChild(card);
+          });
+        }
+
+        results.classList.add('show');
+      } catch (err) {
+        results.innerHTML = `<div class="result-card"><div class="desc">⚠️ Search error. Please try again.</div></div>`;
+        results.classList.add('show');
+      }
+
+      loading.classList.remove('show');
+    }
+
+    function getDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371000;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+      return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
+    }
+
+    function capitalize(s) {
+      return s.charAt(0).toUpperCase() + s.slice(1).replace(/_/g, ' ');
+    }
+
+    // Enter key to search
+    document.getElementById('searchInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') searchNearby();
+    });
+  </script>
 
 </body>
 </html>
